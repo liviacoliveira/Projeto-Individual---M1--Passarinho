@@ -59,43 +59,44 @@ function create() {
 
 function update() { 
 
-    if (passarinho.x === 100) { // caso o passarinho esteja na posição inicial (x= 100)
-        passarinho.setFlip(false,false); // o passarinho deve estar virado para a direita
-        passarinho.ida = true; // define a direção como "ida"
-    }
+if (passarinho.x === 100) { // caso o passarinho esteja na posição inicial (x= 100)
+    passarinho.setFlip(false,false); // o passarinho deve estar virado para a direita
+    passarinho.ida = true; // define a direção como "ida"
+}
 
-    if (passarinho.x < 700 && passarinho.ida === true) { // caso o passarinho esteja indo para frente e ainda não tenha chegado ao seu máximo (x = 700)
-        console.log("O passarinho deve iniciar a ida novamente"); // imprime uma informação no console
-        passarinho.x += 5; // o passarinho é movido 5 unidades para a direita
-    }
+if (passarinho.x < 700 && passarinho.ida === true) { // caso o passarinho esteja indo para frente e ainda não tenha chegado ao seu máximo (x = 700)
+    console.log("O passarinho deve iniciar a ida novamente"); // imprime uma informação no console
+    passarinho.x += 5; // o passarinho é movido 5 unidades para a direita
+}
 
-    if (passarinho.x === 700) { // caso o passarinho atinja a posição 700
-        passarinho.setFlip(true,false); // inverte o sprite horizontalmente para dar início a volta
-        passarinho.ida = false; // altera a direção para "volta"
-    }
+if (passarinho.x === 700) { // caso o passarinho atinja a posição 700
+    passarinho.setFlip(true,false); // inverte o sprite horizontalmente para dar início a volta
+    passarinho.ida = false; // altera a direção para "volta"
+}
 
-    if (passarinho.x > 100 && passarinho.ida === false) { // caso o passarinho esteja voltando mas ainda não chegou à posição inicial (x = 100)
-        console.log("O passarinho deve iniciar a volta"); // imprime uma informação no console
-        passarinho.x -= 5; // o passarinho é movido 5 unidades para a esquerda
-    }
+if (passarinho.x > 100 && passarinho.ida === false) { // caso o passarinho esteja voltando mas ainda não chegou à posição inicial (x = 100)
+    console.log("O passarinho deve iniciar a volta"); // imprime uma informação no console
+    passarinho.x -= 5; // o passarinho é movido 5 unidades para a esquerda
+}
 
-    if (passarinho.y <= 200) { // caso a posição do passarinho tenha atingido o limite superior de 200px
-        passarinho.subindo = false; // o passarinho deve começar a descer
-    }
 
-    if (passarinho.y >= 400) { // caso a posição do passarinho tenha atingido o limite inferior de 400px
-        passarinho.subindo = true; // o passarinho deve começar a subir
-    }
-
-    if (passarinho.subindo === true) { // caso a variável "subindo" do passarinho seja verdadeira
-        passarinho.y -= 5; // o passarinho deve se mover pra cima, diminuindo o valor de y
-    }
-
-    if (passarinho.subindo === false) { // caso a variável "subindo" do passarinho seja falsa
-        passarinho.y += 5; // o passarinho deve se mover pra baixo, aumentando o valor de y
+if (passarinho.subindo === true) { // se o passarinho está subindo
+    while (passarinho.y > 200) { // enquanto o passarinho estiver acima de 200px
+        passarinho.y -= 5; // o passarinho sobe 5 unidades
+        if (passarinho.y <= 200) { // se o limite superior for atingido
+            passarinho.subindo = false; // muda a direção para descer
+        }
+        break; // Importante! O loop só roda uma vez por quadro.
     }
 }
-    
+
+if (passarinho.subindo === false) { // se o passarinho está descendo
+    passarinho.y += 5; // o passarinho desce 5 unidades
+    if (passarinho.y >= 400) { // se o limite inferior for atingido
+        passarinho.subindo = true; // muda a direção para subir
+    }
+}
+}
     
 
     
@@ -104,5 +105,4 @@ function update() {
 
 </body>
 </html>
-
 
